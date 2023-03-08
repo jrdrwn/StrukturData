@@ -4,9 +4,9 @@
 using namespace std;
 
 struct Mahasiswa {
-    string nim;
-    string nama;
-    string email;
+  string nim;
+  string nama;
+  string email;
 };
 
 // Fungsi untuk membersihkan output sebelumnya
@@ -36,7 +36,6 @@ void tampilkanData(Mahasiswa mhs[], int n) {
   }
 }
 
-
 int main() {
   clrscr();
 
@@ -44,7 +43,7 @@ int main() {
   cout << "Masukkan jumlah mahasiswa: ";
   cin >> n;
 
-  Mahasiswa mhs[n]; // Array Of Struct dengan jumlah elemen sebanyak n
+  Mahasiswa mhs[n];  // Array Of Struct dengan jumlah elemen sebanyak n
 
   // Menu
   do {
@@ -56,29 +55,25 @@ int main() {
     cout << "Masukkan pilihan: ";
     cin >> pilihan;
 
+    // menghapus input sebelumnya agar tidak terjadi bug
+    cin.ignore();
+
     switch (pilihan) {
       case 1:
-        // menghapus input sebelumnya agar tidak terjadi bug
-        cin.ignore();
         masukkanData(mhs, n);
-        // agar tidak langsung keluar sampai ada ENTER di tekan
-        cin.get();
         break;
       case 2:
-        cin.ignore();
         tampilkanData(mhs, n);
-        cin.get();
         break;
       case 3:
-        cin.ignore();
         cout << "Terima kasih!" << endl;
-        cin.get();
         break;
       default:
-        cin.ignore();
         cout << "Pilihan tidak valid!" << endl;
-        cin.get();
     }
+
+    // agar tidak langsung keluar sampai ada ENTER di tekan
+    cin.get();
   } while (pilihan != 3);
 
   return 0;
