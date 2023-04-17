@@ -16,13 +16,13 @@ struct Node {
 
 Node *head = NULL, *tail = NULL;
 
-void tambahData(Node **head, Perpustakaan data) {
+void tambahData(Node **head, Node **tail, Perpustakaan data) {
   Node *newNode = new Node;
   newNode->data = data;
   newNode->next = newNode->prev = NULL;
 
   if (*head == NULL) {
-    *head = newNode;
+    *head = *tail = newNode;
   } else {
     Node *curr = *head;
     while (curr->next != NULL) {
@@ -30,6 +30,7 @@ void tambahData(Node **head, Perpustakaan data) {
     }
     curr->next = newNode;
     newNode->prev = curr;
+    *tail = newNode;
   }
 }
 
@@ -97,9 +98,9 @@ void cariData(Node *head, string pola) {
 
 Node *clone(Node *head) {
   Node *curr = head;
-  Node *newHead = NULL;
+  Node *newHead = NULL, *newTail = NULL;
   while (curr != NULL) {
-    tambahData(&newHead, curr->data);
+    tambahData(&newHead, &newTail, curr->data);
     curr = curr->next;
   }
   return newHead;
@@ -171,7 +172,7 @@ int main() {
         Perpustakaan data;
         isiData(data);
         data.id = random_string();
-        tambahData(&head, data);
+        tambahData(&head, &tail, data);
         break;
       }
       case 2:
